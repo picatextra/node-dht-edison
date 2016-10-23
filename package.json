@@ -2,7 +2,7 @@
   "author": "Yannis",
   "name": "node-dht-edison",
   "description": "Reads temperature/humidity from DHT22 sensors on Intel Edison",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "url": "https://github.com/picatextra/node-dht-edison"
   },
