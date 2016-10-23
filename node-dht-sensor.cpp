@@ -14,14 +14,9 @@ void Read(const Nan::FunctionCallbackInfo<Value>& args) {
     }
     
     int pin = args[0]->Uint32Value();
-    float temperature = 0, humidity = 0;
-    int retry = 3;
-    bool result = false;
-    do {
-        result = readDHT22(pin, &temperature, &humidity);
-        if (--retry < 0) break;
-    } while (result != true);
-
+    double temperature = 0, humidity = 0;    
+    bool result = readDHT22(pin, &temperature, &humidity);
+       
     Local<Object> readout = Nan::New<Object>();
     readout->Set(Nan::New("humidity").ToLocalChecked(), Nan::New<Number>(humidity));
     readout->Set(Nan::New("temperature").ToLocalChecked(), Nan::New<Number>(temperature));
