@@ -7,7 +7,6 @@
     "url": "https://github.com/picatextra/node-dht-edison"
   },
   "scripts": {
-    "preinstall": "./preinst"
   },
   "main": "./build/Release/node_dht_edison",
   "dependencies": {
