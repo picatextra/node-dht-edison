@@ -17,7 +17,7 @@ void Read(const Nan::FunctionCallbackInfo<Value>& args) {
     
     int pin = args[0]->Uint32Value();
     double t = 0, h = 0;    
-    bool result = readDHT22(pin, &t, &h);
+    bool result = readDHT22(pin, &h, &t);
        
     Local<Object> readout = Nan::New<Object>();
     readout->Set(Nan::New("h").ToLocalChecked(), Nan::New<Number>(h));
