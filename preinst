@@ -1,0 +1,7 @@
+#!/bin/bash
+
+	echo "Installing Native Abstractions for Node.js (NAN)..."
+	npm install nan
+
+    echo "Rebuiling addon..."
+    node-gyp rebuild
