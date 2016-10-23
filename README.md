@@ -5,6 +5,6 @@ This node.js module supports querying air temperature and relative humidity from
 
 ## Installation
 ``` bash
-$ npm install node-dht-sensor
+$ npm install node-dht-edison
 ```
 

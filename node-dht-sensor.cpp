@@ -18,7 +18,7 @@ void Read(const Nan::FunctionCallbackInfo<Value>& args) {
     int retry = 3;
     bool result = false;
     do {
-        result = readDHT22(pin, temperature, humidity);
+        result = readDHT22(pin, &temperature, &humidity);
         if (--retry < 0) break;
     } while (result != true);
 
