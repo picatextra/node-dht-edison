@@ -14,12 +14,12 @@ void Read(const Nan::FunctionCallbackInfo<Value>& args) {
     }
     
     int pin = args[0]->Uint32Value();
-    double temperature = 0, humidity = 0;    
-    bool result = readDHT22(pin, &temperature, &humidity);
+    double t = 0, h = 0;    
+    bool result = readDHT22(pin, &t, &h);
        
     Local<Object> readout = Nan::New<Object>();
-    readout->Set(Nan::New("humidity").ToLocalChecked(), Nan::New<Number>(humidity));
-    readout->Set(Nan::New("temperature").ToLocalChecked(), Nan::New<Number>(temperature));
+    readout->Set(Nan::New("h").ToLocalChecked(), Nan::New<Number>(h));
+    readout->Set(Nan::New("t").ToLocalChecked(), Nan::New<Number>(t));
     readout->Set(Nan::New("isValid").ToLocalChecked(), Nan::New<Boolean>(result));
     args.GetReturnValue().Set(readout);
 }
