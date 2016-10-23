@@ -41,7 +41,6 @@ bool readDHT22(int pin, double *h, double *t)
         return 0;
     }
 
-    char bit = 0;
     long th = 0;
     int i = 0;
     while ((th = readHighTime(sda, 1000)) != -1)

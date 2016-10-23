@@ -1,7 +1,7 @@
 {
   'targets': [
     {
-      "target_name": "node_dht_sensor",
+      "target_name": "node_dht_edison",
       "include_dirs": [
         "<!(node -e \"require('nan')\")"
       ],
