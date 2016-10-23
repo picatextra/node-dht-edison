@@ -4,7 +4,9 @@
 
 using namespace v8;
 
-bool readDHT22(int pin, double *h, double *t);
+extern "C" {
+    bool readDHT22(int pin, double *h, double *t);
+}
 
 void Read(const Nan::FunctionCallbackInfo<Value>& args) {
 
