@@ -1,15 +1,15 @@
 {
-  "author": "David Momenso",
-  "name": "node-dht-sensor",
-  "description": "Reads data from DHT sensors on Raspberry Pi",
-  "version": "0.0.11",
+  "author": "Yannis",
+  "name": "node-dht-edison",
+  "description": "Reads temperature/humidity from DHT22 sensors on Intel Edison",
+  "version": "1.0",
   "repository": {
-    "url": "https://github.com/momenso/node-dht-sensor"
+    "url": "https://github.com/picatextra/node-dht-edison"
   },
   "scripts": {
     "preinstall": "./preinst"
   },
-  "main": "./build/Release/node_dht_sensor",
+  "main": "./build/Release/node_dht_edison",
   "dependencies": {
     "nan": "^2.2.0"
   },
