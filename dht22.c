@@ -1,7 +1,11 @@
 #include "mraa.h"
 
 typedef int bool;
-enum { false, true };
+enum
+{
+    false,
+    true
+};
 
 long readHighTime(mraa_gpio_context context, int timeout)
 {
@@ -37,7 +41,9 @@ bool readDHT22(int pin, double *h, double *t)
 
     if (treh == -1)
     {
+#if VERBOSE
         fprintf(stderr, "timeout treh\n");
+#endif
         return 0;
     }
 
@@ -48,53 +54,56 @@ bool readDHT22(int pin, double *h, double *t)
         data[i++] = th;
     }
 
-    if (th == -1 && i<40)
+    if (th == -1 && i < 40)
     {
+#if VERBOSE
         fprintf(stderr, "TIMEOUT i=%d\n", i);
+#endif
         ret = false;
     }
     else
     {
         int th1 = 100;
-        short st=0,sh=0,parity=0;
+        short st = 0, sh = 0, parity = 0;
 
         for (i = 0; i < 16; i++)
-            sh |= (data[i]>th1)<<(15-i);
+            sh |= (data[i] > th1) << (15 - i);
 
         for (i = 17; i < 32; i++)
-            st |= (data[i]>th1)<<(31-i);
+            st |= (data[i] > th1) << (31 - i);
 
         for (i = 32; i < 40; i++)
-            parity |= (data[i]>th1)<<(39-i);
-        
-        printf("paste %d %d\n",sh,st);
+            parity |= (data[i] > th1) << (39 - i);
 
-         if(data[16]>th1)
+        if (data[16] > th1)
         {
+#if VERBOSE
             printf("negative\n");
+#endif
             // Convert to native negative format.
             st = -st;
         }
 
-        short checksum = sh>>8 ;
-        checksum+= sh&0xff;
-        checksum+= st>>8;
-        checksum+= st&0xff;
+        short checksum = sh >> 8;
+        checksum += sh & 0xff;
+        checksum += st >> 8;
+        checksum += st & 0xff;
 
-        ret = parity==(checksum&0xff);
-
-        printf("checksum=%d  %X == %X\n",ret,parity,checksum);
-
-        if(ret)
+        ret = parity == (checksum & 0xff);
+#if VERBOSE
+        printf("checksum  %X == %X\n", parity, checksum);
+#endif
+        if (ret)
         {
-            *h=sh/10.0;
-            *t=st/10.0;
+            *h = sh / 10.0;
+            *t = st / 10.0;
         }
     }
 
     mraa_gpio_close(sda);
     return ret;
 }
+
 /*
 int main()
 {
